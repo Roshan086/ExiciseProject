@@ -1,0 +1,98 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        <action name="userLogin" method="userLogin"
+                class="com.exicise.taxation.actions.LoginAction">
+            <result name="success">JSP/home/homepage.jsp</result>         
+        </action>
+        
+        <action name="departments" method="getAllDepartments"
+                class="com.exicise.taxation.actions.DepartmentAction">
+            <result name="success">JSP/HR/department.jsp</result>         
+        </action>
+        
+        <action name="editDepartment" method="editDepartment"
+                class="com.exicise.taxation.actions.DepartmentAction">
+            <result name="success">JSP/HR/update/update-department.jsp</result>
+            <result name="save">JSP/HR/add/add-department.jsp</result>         
+        </action> 
+        
+        <action name="updateDepartment" method="updateDepartment"
+                class="com.exicise.taxation.actions.DepartmentAction">
+            <result name="success">JSP/HR/department.jsp</result>         
+        </action> 
+        
+        <action name="addDepartment" method="addDepartment"
+                class="com.exicise.taxation.actions.DepartmentAction">
+            <result name="success">JSP/HR/department.jsp</result>  
+        </action> 
+        
+        <action name="deleteDepartment" method="deleteDepartment"
+                class="com.exicise.taxation.actions.DepartmentAction">
+            <result name="success">JSP/HR/department.jsp</result>         
+        </action>
+        
+        <action name="departmentPagination" method="getAllDepartments" class="com.exicise.taxation.actions.DepartmentAction">
+            <result name="success"> JSP/HR/department-pagination.jsp </result>  
+        </action>
+        
+        <action name="cancelEditDepartment" method="cancelEditDepartment" class="com.exicise.taxation.actions.DepartmentAction">
+            <result name="success"> JSP/HR/department.jsp</result>  
+        </action>
+        
+        <!--Employees-->
+        
+        <action name="employees" method="getAllEmployees"
+                class="com.exicise.taxation.actions.EmployeeAction">
+            <result name="success">JSP/HR/employee.jsp</result>         
+        </action>
+       
+        <action name="pagination" method="getAllEmployees" class="com.exicise.taxation.actions.EmployeeAction">
+            <result name="success"> JSP/HR/employee-pagination.jsp </result>  
+        </action>
+        
+        <action name="addEmployee" method="showAddEmployeeForm" class="com.exicise.taxation.actions.EmployeeAction">
+            <result name="success">JSP/HR/add-employee.jsp</result>
+        </action>
+        
+        <action name="saveEmployee" method="saveEmployee" class="com.exicise.taxation.actions.EmployeeAction">
+            <result name="success">JSP/HR/employee.jsp</result>
+        </action>
+        
+        <action name="deleteEmployee" method="deleteEmployee" class="com.exicise.taxation.actions.EmployeeAction">
+            <result name="success">JSP/HR/employee.jsp</result>
+        </action>
+        
+        <action name="editEmployeeForm" method="editEmployeeForm" class="com.exicise.taxation.actions.EmployeeAction">
+            <result name="success">JSP/HR/edit-employee.jsp</result>
+        </action>
+        
+        <action name="editEmployee" method="editEmployee" class="com.exicise.taxation.actions.EmployeeAction">
+            <result name="success">JSP/HR/employee.jsp</result>
+        </action>
+        
+        <!--location-->
+        
+        <action name="locations" method="getAllLocations" class="com.exicise.taxation.actions.LocationAction">
+            <result name="success">JSP/HR/location/location.jsp</result>
+        </action>
+        
+        <action name="checkLocationEntries" method="checkLocationEntries" class="com.exicise.taxation.actions.LocationAction">
+            <result name="success">JSP/HR/location/location.jsp</result>
+        </action>
+        
+        <action name="addDistrict" method="addDistrict" class="com.exicise.taxation.actions.LocationAction">
+            <result name="success">JSP/HR/location/location.jsp</result>         
+        </action>
+        
+        <action name="addTaluka" method="addTaluka" class="com.exicise.taxation.actions.LocationAction">
+            <result name="success">JSP/HR/location/location.jsp</result>         
+        </action>
+        
+        
+    </package>
+</struts>
