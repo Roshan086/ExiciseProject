@@ -110,5 +110,20 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         return employees;
         
     }
+
+    @Override
+    public Integer getTableSize() {
+        factory = HibernateUtil.buildFactory();
+        Session session = factory.openSession();
+        session.beginTransaction();
+        
+        Integer sizeOfTable = session.createQuery("from EmployeeModel").list().size();
+        
+        session.getTransaction().commit();
+        session.close();
+        
+        return sizeOfTable;
+        
+    }
     
 }

@@ -1,7 +1,12 @@
 package com.exicise.taxation.actions;
 
+import com.exices.taxation.dao.DepartmentDAO;
+import com.exices.taxation.dao.EmployeeDAO;
+import com.exices.taxation.daoImpl.DepartmentDAOImpl;
+import com.exices.taxation.daoImpl.EmployeeDAOImpl;
 import com.exices.taxation.dto.DepartmentDTO;
 import com.exices.taxation.dto.EmployeeDTO;
+import com.exices.taxation.models.EmployeeModel;
 import com.exices.taxation.transformer.DepartmentTransformer;
 import com.exices.taxation.transformer.EmployeeTransformer;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,6 +22,8 @@ public class EmployeeAction extends ActionSupport{
     private Integer noOfRows = 5 ;
     private Integer firstValue = 0;
     private Integer totalRows;
+    DepartmentDAO departmentDAO=new DepartmentDAOImpl();
+    EmployeeDAO employeeDAO=new EmployeeDAOImpl();
     
     
     private DepartmentDTO departmentDTO;
@@ -120,20 +127,13 @@ public class EmployeeAction extends ActionSupport{
     }
 
     public String getAllEmployees(){
-        System.out.println("In Method");
-        System.out.println("Hello First Commit");
-        employees = EmployeeTransformer.getAllEmployeesByRows(firstValue, noOfRows);
-        for(EmployeeDTO e : employees)
-            System.out.println("Action Dept:"+e.getDepartmentDTO().getName());
-        totalRows = EmployeeTransformer.getAllEmployees().size();
-        
-        //System.out.println(noOfRows+"\t"+firstValue);
-        
+        setEmployees(EmployeeTransformer.getAllEmployeesByRows(firstValue, noOfRows)); 
+        setTotalRows(EmployeeTransformer.getTableSize());
         return "success";
     }
     
     public String showAddEmployeeForm(){
-        //departments = DepartmentTransformer.getAllDepartments();
+        departments = DepartmentTransformer.getAllDepartments(departmentDAO.getAllDepartments());
         return "success";
     }
     
@@ -147,8 +147,9 @@ public class EmployeeAction extends ActionSupport{
         departmentDTO.setId(this.department);
         employeeDTO.setDepartmentDTO(departmentDTO);
         
-        EmployeeTransformer.saveEmployee(employeeDTO);
-        
+        //EmployeeTransformer.saveEmployee(employeeDTO);
+        EmployeeModel employeeModel=EmployeeTransformer.getEmployeeModelByEmployeeDTO(employeeDTO);
+        employeeDAO.createEmployee(employeeModel);
         employees = EmployeeTransformer.getAllEmployeesByRows(firstValue, noOfRows);
         totalRows = EmployeeTransformer.getAllEmployees().size();
         
@@ -177,9 +178,8 @@ public class EmployeeAction extends ActionSupport{
         this.setName(employeeDTO.getName());
         this.setEmail(employeeDTO.getEmail());
         this.setGender(employeeDTO.getGender());
-        
-        
-        //departments = DepartmentTransformer.getAllDepartments();
+
+        departments = DepartmentTransformer.getAllDepartments(departmentDAO.getAllDepartments());
         
         return "success";
     }

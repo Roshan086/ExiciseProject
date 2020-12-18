@@ -20,4 +20,6 @@ public interface EmployeeDAO {
     EmployeeModel updateEmployee(EmployeeModel employeeModel);
     EmployeeModel getEmployeeByEmployeeId(Integer employeeId);
     
+    Integer getTableSize();
+    
 }

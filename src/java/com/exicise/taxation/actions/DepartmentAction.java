@@ -36,9 +36,9 @@ public class DepartmentAction extends ActionSupport {
         System.out.println("noOfRows " + noOfRows);
         System.out.println("pageNo " + pageNo);
         List<DepartmentModel> departmentsList = departmentDAO.getAllDepartmentsByRows(firstValue, 5);
-        System.out.println("Department >>> " + departmentsList.get(0));
+        //System.out.println("Department >>> " + departmentsList.get(0));
         departments = DepartmentTransformer.getAllDepartments(departmentsList);
-        System.out.println("department " + departments.get(0).getName());
+        //System.out.println("department " + departments.get(0).getName());
         totalRows = departments.size();
         return "success";
     }

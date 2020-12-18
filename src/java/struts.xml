@@ -4,7 +4,7 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default">
+    <package name="default" extends="struts-default,json-default">
         <action name="userLogin" method="userLogin"
                 class="com.exicise.taxation.actions.LoginAction">
             <result name="success">JSP/home/homepage.jsp</result>         

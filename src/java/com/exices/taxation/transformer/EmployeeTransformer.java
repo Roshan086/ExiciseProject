@@ -16,26 +16,25 @@ public class EmployeeTransformer
     public static List<EmployeeDTO> getAllEmployees(){
         
         List<EmployeeDTO> employees = new ArrayList<EmployeeDTO>();
-        
         EmployeeDAO employeeDAO = new EmployeeDAOImpl();
         List<EmployeeModel> employeesList =employeeDAO.getAllEmployee();
         for(EmployeeModel employeeModel : employeesList )
         {
             
-            DepartmentDTO departmentDTO = new DepartmentDTO();
-            EmployeeDTO employeeDTO = new EmployeeDTO();
-            System.out.println("Name : "+ employeeModel.getName());
-            employeeDTO.setId(employeeModel.getId().toString());
-            employeeDTO.setName(employeeModel.getName());
-            employeeDTO.setGender(employeeModel.getGender());
-            employeeDTO.setEmail(employeeModel.getEmail());
+            //DepartmentDTO departmentDTO = new DepartmentDTO();
+            //EmployeeDTO employeeDTO = new EmployeeDTO();
+            //System.out.println("Name : "+ employeeModel.getName());
+            //employeeDTO.setId(employeeModel.getId().toString());
+            //employeeDTO.setName(employeeModel.getName());
+            //employeeDTO.setGender(employeeModel.getGender());
+            //employeeDTO.setEmail(employeeModel.getEmail());
             
             //departmentDTO.setName(employeeModel.getDepartmentModel().getName());
             //departmentDTO.setId(employeeModel.getDepartmentModel().getId().toString());
             
-            employeeDTO.setDepartmentDTO(departmentDTO);
+            //employeeDTO.setDepartmentDTO(departmentDTO);
             
-            employees.add(employeeDTO);
+            employees.add(EmployeeTransformer.getEmployeeDTOByEmployeeModel(employeeModel));
         }        
         return employees;
     }
@@ -43,24 +42,24 @@ public class EmployeeTransformer
     public static List<EmployeeDTO> getAllEmployeesByRows(Integer firstValue, Integer noOfRows) {
         
         List<EmployeeDTO> employees = new ArrayList<>();
-        
         EmployeeDAO employeeDAO = new EmployeeDAOImpl();
         List<EmployeeModel> employeesList =employeeDAO.getAllEmployeesByRows(firstValue, noOfRows);
         for(EmployeeModel employeeModel : employeesList )
         {
             
-            DepartmentDTO departmentDTO = new DepartmentDTO();
-            EmployeeDTO employeeDTO = new EmployeeDTO();
-            employeeDTO.setId(employeeModel.getId().toString());
-            employeeDTO.setName(employeeModel.getName());
-            employeeDTO.setGender(employeeModel.getGender());
-            employeeDTO.setEmail(employeeModel.getEmail());
-            departmentDTO.setName(employeeModel.getDepartmentModel().getName());
-            departmentDTO.setId(employeeModel.getDepartmentModel().getId().toString());
-            
-            employeeDTO.setDepartmentDTO(departmentDTO);
-            
-            employees.add(employeeDTO);
+//            DepartmentDTO departmentDTO = new DepartmentDTO();
+//            EmployeeDTO employeeDTO = new EmployeeDTO();
+//            employeeDTO.setId(employeeModel.getId().toString());
+//            employeeDTO.setName(employeeModel.getName());
+//            employeeDTO.setGender(employeeModel.getGender());
+//            employeeDTO.setEmail(employeeModel.getEmail());
+//            departmentDTO.setName(employeeModel.getDepartmentModel().getName());
+//            departmentDTO.setId(employeeModel.getDepartmentModel().getId().toString());
+//            
+//            employeeDTO.setDepartmentDTO(departmentDTO);
+//            
+            employees.add(EmployeeTransformer.getEmployeeDTOByEmployeeModel(employeeModel));
+       
         }        
         return employees;
     }
@@ -127,4 +126,39 @@ public class EmployeeTransformer
         
         return employeeDTO;
     }
+    
+    public static EmployeeModel getEmployeeModelByEmployeeDTO(EmployeeDTO employeeDTO){
+        EmployeeModel employeeModel=new EmployeeModel();
+            if(employeeDTO.getId()!=null){
+                employeeModel.setId(Integer.parseInt(employeeDTO.getId()));
+            }
+        return employeeModel;
+    }
+    
+    public static EmployeeDTO getEmployeeDTOByEmployeeModel(EmployeeModel employeeModel){
+        EmployeeDTO employeeDTO=new EmployeeDTO();
+        if(employeeModel.getId()!=null)
+            employeeDTO.setId(employeeModel.getId().toString());
+        
+        if(employeeModel.getName()!=null)
+            employeeDTO.setName(employeeModel.getName());
+        
+        if(employeeModel.getEmail()!=null)
+            employeeDTO.setEmail(employeeModel.getEmail());
+        
+        if(employeeModel.getGender()!=null)
+            employeeDTO.setGender(employeeModel.getGender());
+        
+        if(employeeModel.getDepartmentModel()!=null)
+            employeeDTO.setDepartmentDTO(DepartmentTransformer.getDepartmentDTOByDepartentModel(employeeModel.getDepartmentModel()));
+        
+        return employeeDTO;
+    }
+    
+    public static Integer getTableSize(){
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+        return employeeDAO.getTableSize();
+    }
+    
+
 }

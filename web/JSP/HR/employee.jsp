@@ -24,8 +24,6 @@
         
 	<script src="assets/scripts/employee-pagination.js"></script>
         
-    </head>
-    
     <style>
         #page-btn
         {
@@ -41,6 +39,8 @@
             font-weight: bold;
         }
     </style>
+    </head>
+    
     
     <body>
         
@@ -94,7 +94,7 @@
                 <th> DELETE </th>
                 </tr>
                 <tbody>
-                    <s:iterator  value="employees" status="incr"> 
+                    <s:iterator  value="employees"> 
                         <tr>
                             <td> <s:property value="id"/> </td>
                             <td> <s:property value="name"/> </td>

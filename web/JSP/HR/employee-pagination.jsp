@@ -15,9 +15,8 @@
         <th> Gender </th>
         <th> Email </th>
         <th> Department </th>
-        <th>  </th>
-        <th> ACTION </th>
-        <th>  </th>
+        <th>  EDIT </th>
+        <th> DELETE </th>
         </tr>
         <tbody>
             <s:iterator  value="employees"> 
@@ -41,14 +40,6 @@
                         </s:url>
                         <s:a href="%{deleteEmployee}" cssClass="btn btn-danger btn">
                             <span class="glyphicon glyphicon-trash"></span> 
-                        </s:a>
-                    </td>
-
-                    <td>
-                        <s:url id="addEmployee" action="addEmployee">
-                        </s:url>
-                        <s:a href="%{addEmployee}" cssClass="btn btn-success btn">
-                            <span class="glyphicon glyphicon-plus"></span> 
                         </s:a>
                     </td>
                 </tr>
